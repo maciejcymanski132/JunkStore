@@ -1,0 +1,72 @@
+﻿@model IEnumerable<JunkStore.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manage Products</h1>
+
+<p>
+    <a type="button" class="btn btn-info"  asp-action="Create">Create New </a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.ProductType)
+            </th>
+            <th scope="row"> Options
+</th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="table-dark">
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+}
+  </tbody>
+</table>
+
+<form>
+    <label for="numberOfProducts">Number of products to display:</label>
+    <input type="number" id="numberOfProducts" name="numberOfProducts" value="10" min="1" max="100">
+    <br>
+    <label for="sortOrder">Sort order:</label>
+    <input type="checkbox" id="sortOrder" name="sortOrder" value="true">Ascending
+    <br>
+    <input type="submit" value="Submit">
+</form>

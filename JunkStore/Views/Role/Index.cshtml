@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+@{
+    ViewData["Title"] = "ROLES";
+}
+  
+<h1> Roles</h1>
+    <a type="button" class="btn btn-info"  asp-action="Create">Create New </a>
+  
+<table class="table table-hover">
+    <tr><th th scope="row">ID</th><th th scope="row">Name</th><th>Users</th><th th scope="row">Update</th><th th scope="row">Delete</th></tr>
+    @foreach (var role in Model)
+    {
+        <tr class="table-dark">
+            <td>@role.Id</td>
+            <td>@role.Name</td>
+            <td i-role="@role.Id"></td>
+            <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Update</a></td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

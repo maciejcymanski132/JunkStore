@@ -1,0 +1,52 @@
+﻿@model IEnumerable<JunkStore.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manage Orders</h1>
+<p>
+    <a type="button" class="btn btn-info" asp-action="Create">Create New </a>
+</p>
+<table  class="table table-hover">
+    <thead>
+        <tr class="table-dark">
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.OrderTotal)
+            </th>
+            <th scope="row">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="table-dark">
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTotal)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
